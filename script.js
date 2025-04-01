@@ -55,7 +55,7 @@ class Rocket {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.angle = Math.random() * Math.PI * 2;
-        this.speed = 2 + Math.random() * 2;
+        this.speed = 1.5 + Math.random() * 1.5;
         this.color = colors[Math.floor(Math.random() * colors.length)];
         this.size = 20;
         this.active = true;
@@ -64,10 +64,6 @@ class Rocket {
 
     update() {
         if (!this.active) return false;
-
-        // Store previous position
-        const prevX = this.x;
-        const prevY = this.y;
 
         // Move rocket
         this.x += Math.cos(this.angle) * this.speed;

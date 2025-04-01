@@ -8,19 +8,35 @@
         body {
             margin: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             background-color: #1a1a1a;
+            gap: 20px;
         }
         canvas {
             border: 2px solid #333;
             background-color: #000;
         }
+        #resetButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #resetButton:hover {
+            background-color: #ff6666;
+        }
     </style>
 </head>
 <body>
     <canvas id="rocketCanvas"></canvas>
+    <button id="resetButton">Reset</button>
     <script src="script.js"></script>
 </body>
 </html> 

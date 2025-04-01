@@ -114,8 +114,17 @@ class Rocket {
 }
 
 // Create rockets
-const rockets = Array.from({ length: 25 }, () => new Rocket());
-const particles = [];
+let rockets = Array.from({ length: 25 }, () => new Rocket());
+let particles = [];
+
+// Reset function
+function resetAnimation() {
+    rockets = Array.from({ length: 25 }, () => new Rocket());
+    particles = [];
+}
+
+// Add event listener for reset button
+document.getElementById('resetButton').addEventListener('click', resetAnimation);
 
 // Animation loop
 function animate() {

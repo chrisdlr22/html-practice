@@ -116,18 +116,45 @@ class Rocket {
 // Create rockets
 let rockets = Array.from({ length: 25 }, () => new Rocket());
 let particles = [];
+let isAnimating = false;
+let animationFrameId = null;
 
 // Reset function
 function resetAnimation() {
-    rockets = Array.from({ length: 25 }, () => new Rocket());
-    particles = [];
+    if (!isAnimating) {
+        rockets = Array.from({ length: 25 }, () => new Rocket());
+        particles = [];
+        // Clear canvas and redraw rockets immediately
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        rockets.forEach(rocket => rocket.draw());
+    }
 }
 
-// Add event listener for reset button
+// Start function
+function startAnimation() {
+    if (!isAnimating) {
+        isAnimating = true;
+        animate();
+    }
+}
+
+// Stop function
+function stopAnimation() {
+    if (isAnimating) {
+        isAnimating = false;
+        cancelAnimationFrame(animationFrameId);
+    }
+}
+
+// Add event listeners for buttons
 document.getElementById('resetButton').addEventListener('click', resetAnimation);
+document.getElementById('startButton').addEventListener('click', startAnimation);
+document.getElementById('stopButton').addEventListener('click', stopAnimation);
 
 // Animation loop
 function animate() {
+    if (!isAnimating) return;
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Update and draw rockets
@@ -156,9 +183,13 @@ function animate() {
     // Check if all rockets are inactive
     if (rockets.every(rocket => !rocket.active) && particles.length === 0) {
         console.log('All rockets have crashed!');
+        isAnimating = false;
+        return;
     }
 
-    requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame(animate);
 }
 
-animate(); 
+// Initial draw without animation
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+rockets.forEach(rocket => rocket.draw()); 

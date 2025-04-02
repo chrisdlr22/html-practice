@@ -32,11 +32,47 @@
         #resetButton:hover {
             background-color: #ff6666;
         }
+        #startButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #44ff44;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+        #startButton:hover {
+            background-color: #66ff66;
+        }
+        #stopButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4444ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 10px;
+        }
+        #stopButton:hover {
+            background-color: #6666ff;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
     <canvas id="rocketCanvas"></canvas>
-    <button id="resetButton">Reset</button>
+    <div class="button-container">
+        <button id="resetButton">Reset</button>
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stop</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html> 
